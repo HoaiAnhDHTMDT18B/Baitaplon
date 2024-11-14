@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Vanphongpham Template">
+    <meta name="keywords" content="Vanphongpham, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vanphongpham | Template</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+
+</head>
+<style>
+    .form-container {
+        padding: 30px;
+        min-height: 100vh;
+        background-color: white;
+    }
+    
+    .form-container input {
+        display: block;
+        margin: 10px 0;
+        padding: 10px;
+        width: 300px;
+    }
+    
+    .form-container button {
+        padding: 10px 15px;
+    }
+    
+    span {
+        margin-left: 320px;
+        margin-bottom: 100px;
+        color: red;
+    }
+    
+    button {
+        margin-top: 20px;
+        background-color: rgb(13, 169, 13);
+        border: none;
+        font-weight: bold;
+    }
+    
+    .container h1 {
+        text-align: center;
+        color: antiquewhite;
+        background-color: rgb(37, 215, 221);
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    [class*="col-"] {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    
+    .btn {
+        background-color: red;
+        color: white;
+        font-weight: bold;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function() {
+        var i = 2;
+        $("#btnDK").click(function() {
+            $("#myModal").modal('show')
+        });
+
+        $(".close").click(function() {
+            $("#myModal").modal('hide')
+        });
+        // cau2
+        function KiemTraMa() {
+            var pattern = /^[0-9]{9}$/;
+            if (!pattern.test($("#txtMa").val())) {
+                $("#tbMa").html("Sai định dạng");
+                return false;
+            } else {
+                $("#tbMa").html("Nhập đúng");
+                return true
+            }
+        }
+        $("#txtMa").blur(KiemTraMa);
+        // cau3
+        function KiemtraHT() {
+            var pattern = /^[A-Z][a-z]+(\s[A-Z][a-z]+)+$/;
+            if ($("#txtHT").val() === "") {
+                $("#tbTen").html("Nhập tên không hợp lệ");
+                return false;
+            }
+            if (!pattern.test($("#txtHT").val())) {
+                $("#tbTen").html("* Chữ cái đầu phải viết hoa");
+                return false;
+            }
+            $("#tbTen").html("Nhập đúng");
+            return true;
+        }
+        $("#txtHT").blur(KiemtraHT);
+
+
+        function KiemTrasdt() {
+            var pattern = /^0[0-9]{9}$/;
+            if (!pattern.test($("#txtsdt").val())) {
+                $("#tbsdt").html("Sai định dạng");
+                return false;
+            } else {
+                $("#tbsdt").html("Nhập đúng");
+                return true
+            }
+        }
+        $("#txtMa").blur(KiemTraMa);
+
+
+        function KiemTraEmail() {
+            var regex = /^{6}@iuh.edu.vn$/;
+            var email = $("#txtemail").val();
+            if (email == "") {
+                $("#txtemail").html("Bắt buộc nhập");
+                $("#txtemail").addclass("mauDo");
+                $("#txtemail").removeClass("mauXanh");
+                return false;
+            } else if (!regex.test(email)) {
+                $("#txtemail").html("Nhập sai");
+                $("#txtemail").addclass("mauDo");
+                $("#txtemail").removeClass("mauXanh");
+                return false;
+            } else {
+                $("#txtemail").html("Đúng");
+                $("#txtemail").addclass("mauXanh");
+                $("#txtemail").removeClass("mauDo");
+                return true;
+            }
+
+        }
+        $("#txtemail").blur(KiemTraEmail);
+        // cau4
+        $('#txtNgay').on('blur', function() {
+            const ngayThamGia = new Date($(this).val());
+            if (!$(this).val()) {
+                $('#tbNgay').text('*Bắt buộc nhập !!');
+                return;
+            }
+
+            const ngayHienTai = new Date();
+            ngayHienTai.setFullYear(ngayHienTai.getFullYear() - 18);
+            if (ngayThamGia > ngayHienTai) {
+                $('#tbNgay').text('Ngày tham gia phải trước ngày hiện tại 18 năm');
+            } else {
+                $('#tbNgay').text('Nhập Đúng');
+            }
+        });
+
+
+
+        // cau7
+        $("#btnSave").click(function() {
+            var ma = $("#txtMa").val();
+            var ht = $("#txtHT").val();
+            var sdt = $("#txtsdt").val();
+            var email = $("#txtemail").val();
+            var ngay = $("#txtNgay").val();
+
+            var them =
+                "<tr><td>" + (i++) + "</td><td>" + ma + "</td><td>" + ht + "</td><td>" + sdt + "</td><td>" + email + "</td><td>" + ngay + "</td><td>";
+            $("#tbDanhSach").append(them);
+            $("#myModal").modal("hide");
+        });
+    });
+</script>
+
+<body>
+
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="header__top__left">
+                                <ul>
+                                    <li> Chào mừng bạn đến với cửa hàng văn phòng phẩm của chúng tôi</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="header__top__right">
+
+                                <div class="header__top__right__language">
+                                    <img src="img/covn.jpg" style="width: 30px;height: 20px;">
+                                    <div>Việt Nam</div>
+
+                                    <ul>
+                                        <li><a href="#">Việt Nam</a></li>
+
+                                    </ul>
+                                </div>
+                                <div class="header__top__right__auth">
+                                    </i> <a href="./login.html"> Đăng nhập</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="header__logo">
+                            <a href="./index.html"><img src="img/echlogo.jpg" style="height: 150px; width: 120px; margin-left: 500px;"></a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <div class="modal-body" id="myModal">
+            <form class="form-container" style="margin-left: 450px;">
+
+                <div class="row form-group p-1">
+                    <div class="col-12 col-sm-12">
+                        <label for="">Họ Tên:</label>
+                    </div>
+                    <div class="col-12 col-sm-12">
+                        <input type="text" class="form-control" id="txtMa" placeholder="Họ Tên">
+                    </div>
+                    <div class="col-12 col-sm-12">
+                        <span id="tbMa" style="color: red;">(*)</span>
+                    </div>
+                </div>
+
+                <div class="row form-group p-1">
+                    <div class="col-12 col-sm-12">
+                        <label for="">Số điện thoại:</label>
+                    </div>
+                    <div class="col-12 col-sm-12">
+                        <input type="text" class="form-control" id="txtsdt" placeholder="0389-234-231">
+                    </div>
+                    <div class="col-12 col-sm-12">
+                        <span id="tbsdt" style="color: red;">(*)</span>
+                    </div>
+                </div>
+                <div class="row form-group p-1">
+                    <div class="col-12 col-sm-12">
+                        <label for="">Email:</label>
+                    </div>
+                    <div class="col-12 col-sm-12">
+                        <input type="text" class="form-control" id="txtemail" placeholder="Email">
+                    </div>
+                    <div class="col-12 col-sm-12">
+                        <span id="tbemail" style="color: red;">(*)</span>
+                    </div>
+                </div>
+                <div class="row form-group p-1">
+                    <div class="col-12 col-sm-12">
+                        <label for="">Ngày đăng kí:</label>
+                    </div>
+                    <div class="col-12 col-sm-12">
+                        <input type="date" name="txtNgay" id="txtNgay" class="form-control">
+                    </div>
+                    <div class="col-12 col-sm-12 p-1">
+                        <span id="tbNgay" style="color: red;">(*)</span>
+                    </div>
+                </div>
+
+                <br>
+                <div class="row p-1" style="display: flex;">
+                    <div class="col-sm-2">
+                        <input type="button" value="Thêm" id="btnSave" class="btn btn-block" style="width: 100%; background-color: green;">
+
+                    </div>
+                    <div class="col-sm-2">
+
+                        <input type="button" value="Close" id="btn close" class="btn btn-block" style="width: 100%; background-color: red;">
+                    </div>
+
+                </div>
+
+            </form>
+
+
+
+
+
+        </div>
+
+</body>
+
+</html>
